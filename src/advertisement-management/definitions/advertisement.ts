@@ -1,18 +1,14 @@
 export class Advertisement {
-    id: string;
+    id?: string;
     title: string;
     description: string;
-    likes: number;
+    salaryRange: number;
+    likes?: number;
     jobType: {
-        partTime,
-        fullTime,
+        hours: 'partTime' | 'fullTime',
         remote
     };
-    category: {
-        officeAdministration,
-        development,
-        qualityAssurance
-    };
+    category: 'officeAdministration' | 'development' | 'qualityAssurance';
     applications?: {
         id?,
         applicantId,
@@ -22,5 +18,5 @@ export class Advertisement {
 
 export enum AdvertisementStatus {
     ACTIVE,
-    INACTIVE,
+    INACTIVE
 }
