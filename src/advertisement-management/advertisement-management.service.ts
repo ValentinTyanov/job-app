@@ -8,6 +8,8 @@ export class AdvertisementManagementService {
     constructor(private http: HttpClient) { }
 
     getAdvertisements() {
+        //TODO: This makes no sense currently, as we come to /advertisements from the routing directly and then we call this
+        // so I need to get the data from the DB / repo or w/e here and return them as response
         return this.http.get<Advertisement[]>('/advertisements');
     }
 

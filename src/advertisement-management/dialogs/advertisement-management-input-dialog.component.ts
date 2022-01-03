@@ -12,7 +12,7 @@ export class AdvertisementManagementInputDialogComponent {
     @Input() title: string;
     @Input() advertisementToUpdate: Advertisement;
 
-    controlNames = ['title', 'description', 'salaryRange', 'jobType', 'category'];
+    private controlNames = ['title', 'description', 'salaryRange', 'jobType', 'category'];
 
     form: FormGroup;
     modalOptions: ModalOptions;

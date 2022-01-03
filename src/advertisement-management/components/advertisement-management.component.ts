@@ -1,6 +1,8 @@
 import { Component, Input, ViewChild } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AdvertisementManagementService } from "../advertisement-management.service";
 import { Advertisement, AdvertisementStatus } from '../definitions/advertisement';
+import { AdvertisementManagementInputDialogComponent } from '../dialogs/advertisement-management-input-dialog.component';
 
 
 
@@ -9,16 +11,30 @@ import { Advertisement, AdvertisementStatus } from '../definitions/advertisement
     templateUrl: './advertisement-management.component.html'
 })
 export class AdvertisementManagementComponent {
-    @Input() advertisement: Advertisement[] = [];
-    // @ViewChild(AgentManagementListComponent) listComponent: AgentManagementListComponent;
+    @Input() advertisements: Advertisement[] = [];
+    // @ViewChild(AdvertisementManagementListComponent) listComponent: AdvertisementManagementListComponent;
     // filteredAgents: Advertisement[] = [];
 
-    constructor(private advertisementManagamentService: AdvertisementManagementService) { }
+    constructor(private advertisementManagamentService: AdvertisementManagementService,
+        private modalService: NgbModal) { }
 
     createAdvertisement() {
-        // advertisement input dialog here
 
-        // call createAdd service with the result from the dialog
+
     }
 
+    private async getCreateOrEditInputDialogResult(title: string, primaryButton: string, advertisementToUpdate?: Advertisement): Promise<any> {
+        const modalRef: NgbModalRef = this.modalService.open(AdvertisementManagementInputDialogComponent, {
+            backdrop: 'static'
+        });
+
+        modalRef.componentInstance.title = title;
+        modalRef.componentInstance.primaryButton = primaryButton;
+        modalRef.componentInstance.advertisementToUpdate = advertisementToUpdate;
+
+        try {
+            const result = await modalRef.result;
+            return result;
+        } catch { }
+    }
 }

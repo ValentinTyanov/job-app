@@ -1,0 +1,19 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div>
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>{{ options.title }}</span>
+        </div>
+        <div class="modal-controls">
+          <a (click)="onCancel()" class="header-control"></a>
+        </div>
+      </div>
+      <div class="modal-body">
+        <ng-content selector="content"></ng-content>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="btn_twobtndlg_pos" [disabled]="!formGroup.valid">{{ primaryButtonText }}</button>
+        <button type="reset" id="btn_twobtndlg_neg" (click)="onCancel()" class="btn btn-footer-cancel">{{ secondaryButtonText }}</button>
+      </div>
+    </div>
+  </form>
