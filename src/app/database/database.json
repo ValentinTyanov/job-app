@@ -1,0 +1,15 @@
+{
+    "advertisements": [
+      {
+        "id": 1,
+        "title": "Advertisement",
+        "description": "Description",
+        "salaryRange": "3000-4000",
+        "jobType": {
+            "hours": "fullTime",
+            "remote": false
+        },
+        "category": "development"
+      }
+    ]
+  }

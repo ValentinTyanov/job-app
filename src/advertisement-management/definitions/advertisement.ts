@@ -2,11 +2,11 @@ export class Advertisement {
     id?: string;
     title: string;
     description: string;
-    salaryRange: number;
+    salaryRange: string;
     likes?: number;
     jobType: {
         hours: 'partTime' | 'fullTime',
-        remote
+        remote?: boolean
     };
     category: 'officeAdministration' | 'development' | 'qualityAssurance';
     applications?: {

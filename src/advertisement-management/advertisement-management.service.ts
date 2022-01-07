@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Advertisement } from './definitions/advertisement';
+import * as advertisements from "../app/database/database.json"
 
 @Injectable()
 export class AdvertisementManagementService {
 
-    constructor(private http: HttpClient) { }
+    private Advertisements: any = advertisements;
 
     getAdvertisements() {
-        //TODO: This makes no sense currently, as we come to /advertisements from the routing directly and then we call this
-        // so I need to get the data from the DB / repo or w/e here and return them as response
-        return this.http.get<Advertisement[]>('/advertisements');
+        return this.Advertisements;
     }
 
     getAdvertisement(id: number) {
-        return this.http.get<Advertisement>(`/advertisements/${id}`);
+        return this.getAdvertisements().filter(a => a.id === id);
     }
 
     createAdvertisement(advertisement: Advertisement) {
+        // this is called on click of create button
+        const fs = require("fs");
+        fs.writeFileSync(advertisements, "advertisement json content here");
+
+
+
+
         return this.http.post<Advertisement>(`/advertisements`, advertisement);
     }
 

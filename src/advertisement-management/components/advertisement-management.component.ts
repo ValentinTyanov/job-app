@@ -18,8 +18,15 @@ export class AdvertisementManagementComponent {
     constructor(private advertisementManagamentService: AdvertisementManagementService,
         private modalService: NgbModal) { }
 
-    createAdvertisement() {
+    async createAdvertisement() {
+        const advertisementToCreate = await this.getCreateOrEditInputDialogResult(
+            'Create Advertisement', 'Create'
+        );
 
+        if (advertisementToCreate) {
+            await this.advertisementManagamentService.createAdvertisement(advertisementToCreate);
+            // await this.getAdvertisements();
+        }
 
     }
 

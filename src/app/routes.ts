@@ -9,4 +9,4 @@ export const Routes =
 }
 
 
-//loadChildren: () => import('src/advertisement-management/components/advertisement-management.component').then((module) => module.AgentManagementModule)
+//loadChildren: () => import('src/advertisement-management/components/advertisement-management.component').then((module) => module.AdvertisementManagementModule)
