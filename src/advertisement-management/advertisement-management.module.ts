@@ -15,9 +15,7 @@ import { AdvertisementManagementStates } from './advertisement-management.states
     imports: [
         CommonModule,
         SharedModule,
-        UpgradesModule,
         UIRouterModule.forChild({ states: AdvertisementManagementStates }),
-        AgGridModule.withComponents([ActionsDropdownCellRenderer]),
         ReactiveFormsModule,
         NgbPopoverModule
     ],

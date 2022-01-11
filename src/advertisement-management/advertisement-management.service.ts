@@ -1,36 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Advertisement } from './definitions/advertisement';
-import * as advertisements from "../app/database/database.json"
 
 @Injectable()
 export class AdvertisementManagementService {
+    private fs = require("fs");
 
-    private Advertisements: any = advertisements;
+    private advertisements = '../app/database/advertisements.json';
 
     getAdvertisements() {
-        return this.Advertisements;
+        return this.fs.readFileSync(this.advertisements);
     }
 
     getAdvertisement(id: number) {
         return this.getAdvertisements().filter(a => a.id === id);
     }
 
+    // this is called on click of create button
     createAdvertisement(advertisement: Advertisement) {
-        // this is called on click of create button
-        const fs = require("fs");
-        fs.writeFileSync(advertisements, "advertisement json content here");
-
-
-
-
-        return this.http.post<Advertisement>(`/advertisements`, advertisement);
+        this.fs.writeFileSync(this.advertisements, advertisement);
     }
 
     updateAdvertisement(advertisement: Advertisement) {
-        return this.http.put<Advertisement>(`/advertisements/${advertisement.id}`, advertisement);
+        let advertisements = this.getAdvertisements();
+        let indexStart = advertisements.indexOf("[");
+        let indexEnd = advertisements.indexOf("]");
+        let tempAdds = advertisements.slice(indexStart, indexEnd);
+        tempAdds.forEach((element) => {
+            let removeIndex = advertisements.map((a) =>
+                a["id"]).indexOf(element["id"]);
+            advertisements.splice(removeIndex, 1);
+            //TODO: IT DOESN'T EVEN DELETE! WE'RE NOT USING advertisement.id anywhere, so make use of it...
+            //TODO: THIS ACTUALLY DELETES, DOESN'T UPDATE!!!! MOVE IT TO DELETE
+        });
+
+        //TODO: NEED TO WRITE THE RESULT BACK TO THE FILE AFTER UPDATING THE VALUES HERE...
     }
 
     deleteAdvertisement(id: number) {
-        return this.http.delete<void>(`/advertisements/${id}`);
+        // return this.http.delete<void>(`/advertisements/${id}`);
     }
 }
