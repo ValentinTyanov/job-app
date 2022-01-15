@@ -1,42 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Advertisement } from './definitions/advertisement';
 
 @Injectable()
 export class AdvertisementManagementService {
     private fs = require("fs");
 
-    private advertisements = '../app/database/advertisements.json';
+    // call this before calling any of the other service methods
+    // UPDATE: this maybe won't be needed as local storage persists even after browser closes so once I have some data stored this won't be needed
+    initializeMockupData() {
+        const mockupData = this.fs.readFileSync("../app/database/advertisements.json");
+        localStorage.setItem('Advertisements', JSON.stringify(mockupData));
+    }
 
     getAdvertisements() {
-        return this.fs.readFileSync(this.advertisements);
+        return JSON.parse(JSON.stringify(localStorage));
     }
 
-    getAdvertisement(id: number) {
-        return this.getAdvertisements().filter(a => a.id === id);
+    getAdvertisement(id) {
+        return JSON.parse(localStorage.getItem('Advertisement' + id));
     }
 
-    // this is called on click of create button
-    createAdvertisement(advertisement: Advertisement) {
-        this.fs.writeFileSync(this.advertisements, advertisement);
+    createOrUpdateAdvertisement(advertisement) {
+        localStorage.setItem('Advertisement ' + advertisement.id, JSON.stringify(advertisement));
+        console.log("Create / Update advertisement with id: " + advertisement.id);
     }
 
-    updateAdvertisement(advertisement: Advertisement) {
-        let advertisements = this.getAdvertisements();
-        let indexStart = advertisements.indexOf("[");
-        let indexEnd = advertisements.indexOf("]");
-        let tempAdds = advertisements.slice(indexStart, indexEnd);
-        tempAdds.forEach((element) => {
-            let removeIndex = advertisements.map((a) =>
-                a["id"]).indexOf(element["id"]);
-            advertisements.splice(removeIndex, 1);
-            //TODO: IT DOESN'T EVEN DELETE! WE'RE NOT USING advertisement.id anywhere, so make use of it...
-            //TODO: THIS ACTUALLY DELETES, DOESN'T UPDATE!!!! MOVE IT TO DELETE
-        });
-
-        //TODO: NEED TO WRITE THE RESULT BACK TO THE FILE AFTER UPDATING THE VALUES HERE...
-    }
-
-    deleteAdvertisement(id: number) {
-        // return this.http.delete<void>(`/advertisements/${id}`);
+    deleteAdvertisement(id) {
+        localStorage.removeItem('Advertisement' + id);
+        console.log("Deleting advertisement with id: " + id);
     }
 }
