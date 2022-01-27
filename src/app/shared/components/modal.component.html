@@ -12,7 +12,7 @@
         <ng-content selector="content"></ng-content>
       </div>
       <div class="modal-footer">
-        <button type="submit" id="btn_twobtndlg_pos" [disabled]="!formGroup.valid">{{ primaryButtonText }}</button>
+        <button class="btn btn-secondary" type="submit" id="btn_twobtndlg_pos" [disabled]="!formGroup.valid">{{ primaryButtonText }}</button>
         <button type="reset" id="btn_twobtndlg_neg" (click)="onCancel()" class="btn btn-footer-cancel">{{ secondaryButtonText }}</button>
       </div>
     </div>

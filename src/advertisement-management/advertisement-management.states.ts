@@ -9,14 +9,14 @@ let advertisementManagementService: AdvertisementManagementService = null;
  */
 export function advertisementsDataResolver($transition$) {
     if (!advertisementManagementService) {
-        advertisementManagementService = $transition$.injector().get(advertisementManagementService);
+        advertisementManagementService = $transition$.injector().get(AdvertisementManagementService);
     }
     return advertisementManagementService.getAdvertisements();
 }
 
 export const AdvertisementManagementStates: Ng2StateDeclaration[] = [{
     name: 'advertisements',
-    url: '/advertisements',
+    url: '/',
     component: AdvertisementManagementComponent,
     resolve: {
         advertisements: advertisementsDataResolver

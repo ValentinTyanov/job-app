@@ -50,10 +50,10 @@ export class AdvertisementManagementInputDialogComponent {
             title: this.title
         };
 
-        for (const name in this.controlNames) {
+        this.controlNames.map((name) => {
             const control = this.form.controls[name];
             control.valueChanges.subscribe((value) => this.setValidationMessage(control, name));
-        }
+        })
     }
 
     beforeSubmit() {
@@ -63,7 +63,7 @@ export class AdvertisementManagementInputDialogComponent {
     private setValidationMessage(c: AbstractControl, controlName: string) {
         if ((c.touched || c.dirty) && c.errors) {
             if (c.errors['required']) {
-                const temporaryValidationMessage = controlName + ' cannot be empty';
+                const temporaryValidationMessage = controlName.toUpperCase() + ' cannot be empty';
 
                 switch (controlName) {
                     case 'title':
@@ -91,6 +91,24 @@ export class AdvertisementManagementInputDialogComponent {
                         this.categoryValidation = 'You can only choose one category';
                         break;
                 }
+            }
+        } else {
+            switch (controlName) {
+                case 'title':
+                    this.titleValidation = "";
+                    break;
+                case 'description':
+                    this.descriptionValidation = "";
+                    break;
+                case 'salaryRange':
+                    this.salaryRangeValidation = "";
+                    break;
+                case 'jobType':
+                    this.jobTypeValidation = "";
+                    break;
+                case 'category':
+                    this.categoryValidation = "";
+                    break;
             }
         }
     }

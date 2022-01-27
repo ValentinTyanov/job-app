@@ -1,12 +1,11 @@
-import { AdvertisementManagementComponent } from 'src/advertisement-management/components/advertisement-management.component';
+/**
+ * These modules are only loaded when browsed to
+ */
 
-//this is temporary, should do it with dynamic module imports and using the states file for the route description
-export const Routes =
-{
-    name: 'advertisements.**',
-    url: '/advertisements',
-    component: AdvertisementManagementComponent
-}
-
-
-//loadChildren: () => import('src/advertisement-management/components/advertisement-management.component').then((module) => module.AdvertisementManagementModule)
+export const Routes = [
+    {
+        name: 'advertisements.**',
+        url: '/',
+        loadChildren: () => import('../advertisement-management/advertisement-management.module').then((module) => module.AdvertisementManagementModule)
+    }
+]

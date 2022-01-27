@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { UIRouterModule } from '@uirouter/angular';
-import { SharedModule } from '../app/shared/shared.module';
+import { SharedModule } from '../app/shared/shared.module'
 import { AdvertisementManagementService } from './advertisement-management.service';
 import { AdvertisementManagementComponent } from './components/advertisement-management.component';
 // TODO: IMPORT THIS
@@ -21,10 +21,8 @@ import { AdvertisementManagementStates } from './advertisement-management.states
     ],
     declarations: [
         AdvertisementManagementComponent,
-        AdvertisementManagementListComponent,
+        // AdvertisementManagementListComponent,
         AdvertisementManagementInputDialogComponent,
-        ActionsDropdownCellRenderer,
-        NameAndStatusIconCellRenderer
     ],
     providers: [
         AdvertisementManagementService

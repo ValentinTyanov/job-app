@@ -1,0 +1,64 @@
+<custom-modal [options]="modalOptions" [formGroup]="form" [beforeSubmit]="beforeSubmit">
+    <content>
+      <div class="form-group" >
+        <label class="form-control-label">Title</label>
+        <input type="text"
+               class="form-control"
+               id="advertisement-title"
+               formControlName="title"
+               placeholder="Title"
+               autocomplete="off" [ngClass]="{'border border-danger': titleValidation}"/>
+        <span class="text-danger">
+            {{ titleValidation }}
+        </span>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Description</label>
+        <input type="text"
+               class="form-control"
+               id="description"
+               formControlName="description"
+               placeholder="Advertisement description"
+               autocomplete="off" [ngClass]="{'border border-danger': descriptionValidation}"/>
+        <span class="text-danger">
+            {{ descriptionValidation }}
+        </span>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Salary Range</label>
+        <input type="text"
+               class="form-control"
+               id="salary-range"
+               formControlName="salaryRange"
+               placeholder="Salary range"
+               autocomplete="off" [ngClass]="{'border border-danger': salaryRangeValidation}"/>
+        <span class="text-danger">
+            {{ salaryRangeValidation }}
+        </span>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Job Type</label>
+        <input type="text"
+               class="form-control"
+               id="job-type"
+               formControlName="jobType"
+               placeholder="Job type"
+               autocomplete="off" [ngClass]="{'border border-danger': jobTypeValidation}"/>
+        <span class="text-danger">
+            {{ jobTypeValidation }}
+        </span>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Category</label>
+        <input type="text"
+               class="form-control"
+               id="category"
+               formControlName="category"
+               placeholder="Category"
+               autocomplete="off" [ngClass]="{'border border-danger': categoryValidation}"/>
+        <span class="text-danger">
+            {{ categoryValidation }}
+        </span>
+      </div>
+    </content>
+  </custom-modal>
