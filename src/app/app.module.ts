@@ -8,11 +8,6 @@ import { Routes } from './routes';
 
 import { AppComponent } from './app.component';
 
-
-// var homeState = { name: 'home', url: '/home', component: AdvertisementManagementComponent };
-// var aboutState = { name: 'about', url: '/about', component: About };
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +22,3 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-
-
-
-
