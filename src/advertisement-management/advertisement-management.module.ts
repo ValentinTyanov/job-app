@@ -6,8 +6,6 @@ import { UIRouterModule } from '@uirouter/angular';
 import { SharedModule } from '../app/shared/shared.module'
 import { AdvertisementManagementService } from './advertisement-management.service';
 import { AdvertisementManagementComponent } from './components/advertisement-management.component';
-// TODO: IMPORT THIS
-// import { AdvertisementManagementListComponent } from './components/Advertisement-management-list/advertisement-management-list.component';
 import { AdvertisementManagementInputDialogComponent } from './dialogs/advertisement-management-input-dialog.component';
 import { AdvertisementManagementStates } from './advertisement-management.states';
 
@@ -21,7 +19,6 @@ import { AdvertisementManagementStates } from './advertisement-management.states
     ],
     declarations: [
         AdvertisementManagementComponent,
-        // AdvertisementManagementListComponent,
         AdvertisementManagementInputDialogComponent,
     ],
     providers: [
