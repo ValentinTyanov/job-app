@@ -1,7 +1,7 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AdvertisementManagementService } from "../advertisement-management.service";
-import { Advertisement, AdvertisementStatus } from '../definitions/advertisement';
+import { Advertisement } from '../definitions/advertisement';
 import { AdvertisementManagementInputDialogComponent } from '../dialogs/advertisement-management-input-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog.component';
 
@@ -11,8 +11,18 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
 })
 export class AdvertisementManagementComponent {
     @Input("advertisements") advertisements = [];
-    // @ViewChild(AdvertisementManagementListComponent) listComponent: AdvertisementManagementListComponent;
-    // filteredAgents: Advertisement[] = [];
+
+    styler = {
+        'cursor': 'default'
+    }
+
+    hover($event) {
+        if ($event.type == 'mouseover') {
+            this.styler.cursor = 'pointer';
+        } else {
+            this.styler.cursor = 'default';
+        }
+    }
 
     constructor(private advertisementManagamentService: AdvertisementManagementService,
         private modalService: NgbModal) {
@@ -41,6 +51,8 @@ export class AdvertisementManagementComponent {
             'Update Advertisement', 'Update', advertisement
         );
 
+        advertisementToUpdate.id = advertisement.id;
+
         if (advertisementToUpdate != null) {
             await this.advertisementManagamentService.createOrUpdateAdvertisement(advertisementToUpdate, false);
             await this.getAdvertisements();
@@ -48,9 +60,10 @@ export class AdvertisementManagementComponent {
     }
 
     async deleteAdvertisement(advertisement) {
-        const shouldDeleteAdvertisement: boolean = await this.getDeleteConfirmationDialogResult('Confirm Delete Advertisement', `Are you sure you want to delete advertisement ${advertisement.title}?`);
+        const shouldDeleteAdvertisement: boolean = await this.getDeleteConfirmationDialogResult('Delete Advertisement', `Are you sure you want to delete advertisement '${advertisement.title}'?`);
+
         if (shouldDeleteAdvertisement) {
-            await this.advertisementManagamentService.deleteAdvertisement(advertisement.id);
+            await this.advertisementManagamentService.deleteAdvertisement(advertisement);
             await this.getAdvertisements();
         }
     }

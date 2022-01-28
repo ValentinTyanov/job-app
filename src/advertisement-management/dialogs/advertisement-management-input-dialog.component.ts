@@ -33,7 +33,7 @@ export class AdvertisementManagementInputDialogComponent {
             salaryRange: ['', [Validators.required]],
             jobType: ['', [Validators.required]],
             category: ['', [Validators.required,
-            Validators.maxLength(20)]]
+                Validators.maxLength(21)]]
         });
 
         if (this.advertisementToUpdate) {
@@ -88,7 +88,7 @@ export class AdvertisementManagementInputDialogComponent {
                         this.titleValidation = 'Advertisement title is too long';
                         break;
                     case 'category':
-                        this.categoryValidation = 'You can only choose one category';
+                        this.categoryValidation = 'You can only choose one category (Office Administration / Development / Quality Assurance)';
                         break;
                 }
             }

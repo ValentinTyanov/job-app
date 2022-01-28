@@ -26,58 +26,14 @@ export class AdvertisementManagementService {
 
     createOrUpdateAdvertisement(advertisement, create) {
         if (create) {
-            const id = uuid.v4();
-            localStorage.setItem('Advertisement ' + id, JSON.stringify(advertisement));
-            console.log("Create advertisement with id: " + id);
+            let unidentifiedAdd = { ...advertisement, id: uuid.v4() };
+            localStorage.setItem('Advertisement ' + unidentifiedAdd.id, JSON.stringify(unidentifiedAdd));
         } else {
             localStorage.setItem('Advertisement ' + advertisement.id, JSON.stringify(advertisement));
-            console.log("Update advertisement with id: " + advertisement.id);
         }
     }
 
-    deleteAdvertisement(id) {
-        localStorage.removeItem('Advertisement' + id);
-        console.log("Deleting advertisement with id: " + id);
+    deleteAdvertisement(advertisement) {
+        localStorage.removeItem(`Advertisement ${advertisement.id}`);
     }
-
-
-    // initializeMockupData() {
-    //     const mockupData = [
-    //         {
-    //             "id": 1,
-    //             "title": "Advertisement",
-    //             "description": "Description",
-    //             "salaryRange": "3000-4000",
-    //             "jobType": {
-    //                 "hours": "fullTime",
-    //                 "remote": false
-    //             },
-    //             "category": "development"
-    //         },
-    //         {
-    //             "id": 2,
-    //             "title": "Advertisement 2",
-    //             "description": "Description 2",
-    //             "salaryRange": "2000-3000",
-    //             "jobType": {
-    //                 "hours": "fullTime",
-    //                 "remote": false
-    //             },
-    //             "category": "officeAdministration"
-    //         },
-    //         {
-    //             "id": 3,
-    //             "title": "Advertisement 3",
-    //             "description": "Description 3",
-    //             "salaryRange": "4000-5000",
-    //             "jobType": {
-    //                 "hours": "fullTime",
-    //                 "remote": false
-    //             },
-    //             "category": "qualityAssurance"
-    //         }
-    //     ];
-
-    //     localStorage.setItem('Advertisements', JSON.stringify(mockupData));
-    // }
 }

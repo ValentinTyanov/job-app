@@ -20,11 +20,19 @@
           </thead>
           <tbody>
             <tr *ngFor="let advertisement of advertisements">
-                <td> {{advertisement.title}} </td>
+                <td [ngStyle]="{'cursor': styler.cursor}"
+                (mouseover)="hover($event)" (mouseout)="hover($event)"
+                data-toggle="tooltip" data-placement="right" title="Click to update advertisement"
+                 (click)="updateAdvertisement(advertisement)" > {{advertisement.title}} </td>
                 <td> {{advertisement.description}} </td>
                 <td> {{advertisement.salaryRange}} </td>
                 <td> {{advertisement.jobType}} </td>
                 <td> {{advertisement.category}} </td>
+                <span class="oi oi-x" style="color: rgb(221, 104, 58);"
+                [ngStyle]="{'cursor': styler.cursor}"
+                (mouseover)="hover($event)" (mouseout)="hover($event)"
+                data-toggle="tooltip" data-placement="right" title="Click to delete advertisement"
+                (click)="deleteAdvertisement(advertisement)"></span>
             </tr>
           </tbody>
       </table>
